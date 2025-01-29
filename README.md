@@ -1,6 +1,6 @@
 # SISCONEF - Sistema de Controle de Pessoal
 
-### Versão 1.0
+### Versão 2.0
 
 SISCONEF é um sistema web desenvolvido para o controle de pessoal de uma Organização Militar do Exército Brasileiro.
 O sistema permite gerenciar destinos, férias, funções e outras informações relacionadas ao efetivo militar.
