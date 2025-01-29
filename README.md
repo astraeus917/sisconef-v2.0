@@ -1,17 +1,53 @@
-1 - Install Laravel:
-    composer create-project --prefer-dist laravel/laravel crud-react-laravel
+# SISCONEF - Sistema de Controle de Pessoal
 
-2 - Install React:
-    create-react-app crud-react
+### Versão 1.0
 
-3 - Install Axios Sweetalert, Bootstrap and others:
-    npm install axios react-bootstrap bootstrap
-    npm install react-router-dom sweetalert2 --save
-    npm install --save moment react-moment
-    npm install jspdf jspdf-autotable
+SISCONEF é um sistema web desenvolvido para o controle de pessoal de uma Organização Militar do Exército Brasileiro.
+O sistema permite gerenciar destinos, férias, funções e outras informações relacionadas ao efetivo militar.
 
-4 - Para evitar o erro de Attempt id, insira no banco de dados o destino 'PRONTO'
+## Tecnologias Utilizadas
+- **Laravel** (Backend)
+- **React** (Frontend)
+- **Axios, SweetAlert2, Bootstrap** (Bibliotecas auxiliares)
+- **Moment.js, jsPDF** (Manipulação de datas e geração de PDFs)
 
-5 - composer update (para atualizar o Laravel) e npm install (para atualizar o react)
+## Instalação
 
-6 - Caso o logo não aparece, para resolver copie o logo.png do frontend para o backend (pluci/storage/logo.png)
+### 1. Instalar Laravel
+```sh
+composer create-project --prefer-dist laravel/laravel crud-react-laravel
+```
+
+### 2. Instalar React
+```sh
+npx create-react-app crud-react
+```
+
+### 3. Instalar dependências
+```sh
+npm install axios react-bootstrap bootstrap
+npm install react-router-dom sweetalert2 --save
+npm install --save moment react-moment
+npm install jspdf jspdf-autotable
+```
+
+### 4. Configuração do Banco de Dados
+Para evitar o erro de `Attempt id`, insira no banco de dados o destino `PRONTO`.
+
+### 5. Atualização das Dependências
+```sh
+composer update  # Para atualizar o Laravel
+npm install      # Para atualizar as dependências do React
+```
+
+### 6. Correção de Logo
+Caso o logo não apareça, copie o arquivo `logo.png` do frontend para o backend:
+```sh
+cp frontend/src/assets/logo.png backend/storage/logo.png
+```
+
+---
+
+## Contato
+Para mais informações ou suporte, entre em contato com os desenvolvedores do projeto.
+
