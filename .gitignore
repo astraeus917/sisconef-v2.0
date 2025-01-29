@@ -1,0 +1,41 @@
+# Node.js (React)
+frontend-react/node_modules/
+frontend-react/build/
+frontend-react/dist/
+frontend-react/.next/
+frontend-react/out/
+frontend-react/coverage/
+frontend-react/.cache
+frontend-react/.DS_Store
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Laravel
+backend-laravel/vendor/
+backend-laravel/node_modules/
+backend-laravel/storage/
+backend-laravel/bootstrap/cache/
+backend-laravel/*.log
+backend-laravel/*.sqlite
+backend-laravel/public/storage
+backend-laravel/public/hot
+backend-laravel/public/vendor
+backend-laravel/public/mix-manifest.json
+backend-laravel/.env
+backend-laravel/.env.example
+backend-laravel/.phpunit.result.cache
+
+# IDEs & OS Files
+*.swp
+*.swo
+*.sublime-workspace
+*.sublime-project
+.idea/
+.vscode/
+Thumbs.db
+.DS_Store

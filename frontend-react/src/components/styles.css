@@ -1,0 +1,32 @@
+#form_div {
+    margin-top: 6rem;
+}
+
+#notfound {
+    background-color: rgb(200, 0, 0);
+    min-height: 100vh;
+}
+
+#navbar {
+    background-color: #14530e;
+}
+
+#SubmitButton {
+    border: 2px solid #14530e;
+    background-color: #14530e;
+}
+
+#SubmitButton:hover {
+    background-color: #0da100;
+}
+
+#InfoButton {
+    background-color: #fff;
+    color: var(--bs-card-color);
+    text-decoration: underline;
+    border: none !important;
+}
+
+#InfoButton:hover {
+    color: #14530e;
+}
