@@ -26,7 +26,7 @@ function NavMain() {
                             <Offcanvas.Header closeButton>
                                 <Offcanvas.Title id={`offcanvasNavbarLabel-expand-${false}`}>
                                     <img height={50} src={`${server_ip}/storage/logo.png`} alt="Logo" />
-                                    SISCONEF
+                                    SISCONEF 2.0
                                 </Offcanvas.Title>
                             </Offcanvas.Header>
 
@@ -78,8 +78,8 @@ function NavMain() {
                                 <hr></hr>
 
                                 <div className="mt-6 text-center">
-                                    <p className="mb-0">Sgt Jhonathan</p>
                                     <p className="mb-0">Cb Leandro Santos</p>
+                                    <p className="mb-0">Sgt Jhonathan</p>
                                     <p className="mb-0">&copy; 2024, all rights</p>
                                 </div>
 

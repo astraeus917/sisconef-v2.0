@@ -59,6 +59,7 @@ function AdminContent({ navigate }) {
         try {
             const { data } = await axios.get(`${server_ip}/api/users`);
             const users = data.map(user => ({
+                id: user.id,
                 username: user.username,
                 role: user.role,
                 subunitName: user.subunit ? user.subunit.name : "Sem Subunidade",
@@ -136,7 +137,7 @@ function AdminContent({ navigate }) {
                                                     </Col>
 
                                                     <Col xs={4} md={4}>
-                                                        <Link to={`/militaries/edit/`} className='col btn btn-outline-success'>
+                                                        <Link to={`/user/edit/${user.id}`} className='col btn btn-outline-success'>
                                                             Editar
                                                         </Link>
                                                         <Button className='col ms-2 btn-outline-danger'>
