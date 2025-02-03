@@ -5,7 +5,7 @@ import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import axios from 'axios'
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 import Swal from 'sweetalert2';
 import jsPDF from 'jspdf';
 import 'jspdf-autotable';
@@ -103,15 +103,47 @@ function AdminContent({ navigate }) {
                         <Accordion>
                             <AccordionItem eventKey="0">
 
-                                <AccordionHeader>Usuários</AccordionHeader>
+                                <AccordionHeader><h4>Usuários</h4></AccordionHeader>
                                 <AccordionBody>
+                                    <Row className='justify-content-center text-center'>
+                                        <Col xs={4} md={4}>
+                                            <strong>Nome de Usuário</strong>
+                                        </Col>
+                                        <Col xs={1} md={1}>
+                                            <strong>Subunidade</strong>
+                                        </Col>
+                                        <Col xs={3} md={3}>
+                                            <strong>Cargo</strong>
+                                        </Col>
+                                        <Col xs={4} md={4}>
+                                            <strong>Ações</strong>
+                                        </Col>
+                                        <hr></hr>
+                                    </Row>
+
                                     {users.length > 0 ? (
                                         users.map((user, index) => (
                                             <div key={index}>
-                                                <strong>Username:</strong> {user.username}
-                                                <strong>Subunit:</strong> {user.subunitName}
-                                                <strong>Role:</strong> {user.role}
-                                                <hr />
+                                                <Row className='justify-content-center text-center'>
+                                                    <Col xs={4} md={4}>
+                                                        <p>{user.username}</p>
+                                                    </Col>
+                                                    <Col xs={1} md={1}>
+                                                        <p>{user.subunitName}</p>
+                                                    </Col>
+                                                    <Col xs={3} md={3}>
+                                                        <p>{user.role}</p>
+                                                    </Col>
+
+                                                    <Col xs={4} md={4}>
+                                                        <Link to={`/militaries/edit/`} className='col btn btn-outline-success'>
+                                                            Editar
+                                                        </Link>
+                                                        <Button className='col ms-2 btn-outline-danger'>
+                                                            Excluir
+                                                        </Button>
+                                                    </Col>
+                                                </Row>
                                             </div>
                                         ))
                                     ) : (

@@ -129,9 +129,18 @@ code {
   min-height: 100vh;
 }
 
+.btn-outline-success {
+  font-size: x-small !important;
+}
+
 .btn-outline-danger {
   background-color: #fdfdfd !important;
   font-size: x-small !important;
+}
+
+
+.btn-outline-danger:hover {
+  background-color: #dc3545 !important;
 }
 
 .btn-transfer {
@@ -144,10 +153,6 @@ code {
 .btn-transfer:hover {
   color: #ffffff !important;
   background-color: #0011ff !important;
-}
-
-.btn-outline-danger:hover {
-  background-color: #dc3545 !important;
 }
 
 .card .btn-success {
