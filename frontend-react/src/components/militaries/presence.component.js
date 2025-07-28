@@ -109,36 +109,36 @@ export default function Presence() {
     }
 
 
-    // const fetchDestinations = async () => {
-    //     var array = [];
-    //     await axios.get(`${server_ip}/api/destinations`).then(({ data }) => {
-    //         {
-    //             data.forEach((value) => {
-    //                 array.push({
-    //                     key: value.destination,
-    //                     value: value.id,
-    //                 });
-    //             });
-    //         }
-    //     })
-    //     setDestinations(array);
-    // }
-
     const fetchDestinations = async () => {
         var array = [];
         await axios.get(`${server_ip}/api/destinations`).then(({ data }) => {
-            // Filter the destinations by removing the one named 'FÉRIAS'.
-            const filteredData = data.filter((value) => value.destination !== 'FÉRIAS');
-            // Maps the remaining destinations to the desired format.
-            filteredData.forEach((value) => {
-                array.push({
-                    key: value.destination,
-                    value: value.id,
+            {
+                data.forEach((value) => {
+                    array.push({
+                        key: value.destination,
+                        value: value.id,
+                    });
                 });
-            });
+            }
         })
         setDestinations(array);
     }
+
+    // const fetchDestinations = async () => {
+    //     var array = [];
+    //     await axios.get(`${server_ip}/api/destinations`).then(({ data }) => {
+    //         // Filter the destinations by removing the one named 'FÉRIAS'.
+    //         const filteredData = data.filter((value) => value.destination !== 'FÉRIAS');
+    //         // Maps the remaining destinations to the desired format.
+    //         filteredData.forEach((value) => {
+    //             array.push({
+    //                 key: value.destination,
+    //                 value: value.id,
+    //             });
+    //         });
+    //     })
+    //     setDestinations(array);
+    // }
 
 
     const fetchMilitaries = async () => {
@@ -312,7 +312,9 @@ export default function Presence() {
                                                     <Form.Select className='text-center btn btn-success font-x-large' value={destination} onChange={(event) => {
                                                         setDestination(event.target.value)
                                                     }}>
-                                                        {destinations.map((option) => {
+                                                        {destinations
+                                                        .filter(option => option.key !== "FÉRIAS")
+                                                        .map((option) => {
                                                             return (
                                                                 <option key={option.key} value={option.key}>
                                                                     {option.key}

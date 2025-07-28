@@ -104,6 +104,13 @@ class UserController extends Controller
         ]);
     }
 
+    public function edit(User $username)
+    {
+        return response()->json([
+            'username'=>$username
+        ]);
+    }
+
     public function changePassword(Request $request, $id)
     {
         $request->validate([

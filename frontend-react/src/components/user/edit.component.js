@@ -27,7 +27,7 @@ export default function EditUser() {
 function UserEditContent({ navigate }) {
   const { id } = useParams()
 
-  const [name, setName] = useState("")
+  const [username, setUsername] = useState("")
   const [role, setRole] = useState("")
   const [subunit, setSubunit] = useState("")
   const [validationError, setValidationError] = useState({})
@@ -57,9 +57,9 @@ function UserEditContent({ navigate }) {
   }, [])
 
   const fetchUser = async () => {
-    await axios.get(`${server_ip}/api/militaries/${id}`).then(({ data }) => {
-      const { name, role, subunit_id } = data.military
-      setName(name)
+    await axios.get(`${server_ip}/api/users/${id}`).then(({ data }) => {
+      const { username, role, subunit_id } = data.military
+      setUsername(username)
       setRole(role)
       setSubunit(subunit_id)
     }).catch(({ response: { data } }) => {
@@ -75,12 +75,11 @@ function UserEditContent({ navigate }) {
     e.preventDefault();
     const formData = new FormData()
 
-    formData.append('_method', 'PATCH');
-    formData.append('name', name)
+    formData.append('username', username)
     formData.append('role_id', role)
     formData.append('subunit_id', subunit)
 
-    await axios.post(`${server_ip}/api/militaries/${id}`, formData).then(({ data }) => {
+    await axios.post(`${server_ip}/api/user/edit/${id}`, formData).then(({ data }) => {
       Swal.fire({
         icon: "success",
         text: data.message,
@@ -120,8 +119,8 @@ function UserEditContent({ navigate }) {
                     <Col xs={12} className="mb-3">
                       <Form.Group controlId="Name">
                         <Form.Label>Nome de Guerra</Form.Label>
-                        <Form.Control required type="text" value={name} onChange={(event) => {
-                          setName(event.target.value);
+                        <Form.Control required type="text" value={username} onChange={(event) => {
+                          setUsername(event.target.value);
                         }} />
                       </Form.Group>
                     </Col>
