@@ -244,7 +244,7 @@ export default function Presence() {
 
             formData.append('presences', JSON.stringify(presenceMilitaries));
 
-            setIsButtonDisabled(true); // bisable button and send.
+            setIsButtonDisabled(true); // disable button and send.
 
             try {
                 const { data } = await axios.post(`${server_ip}/api/presences/insert`, formData);
@@ -313,7 +313,6 @@ export default function Presence() {
                                                         setDestination(event.target.value)
                                                     }}>
                                                         {destinations
-                                                        .filter(option => option.key !== "FÉRIAS")
                                                         .map((option) => {
                                                             return (
                                                                 <option key={option.key} value={option.key}>

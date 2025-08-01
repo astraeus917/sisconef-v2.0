@@ -5,11 +5,10 @@ import Col from "react-bootstrap/Col";
 import { Link } from 'react-router-dom';
 import Container from "react-bootstrap/Container";
 import Form from 'react-bootstrap/Form';
-import axios from 'axios'
+import axios from 'axios';
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom';
 import RowLayoffMade from '../layouts/LayoffMilitaryMade';
-
 
 export default function Presence() {
     const navigate = useNavigate();
@@ -22,36 +21,40 @@ export default function Presence() {
         }
     }, [navigate]);
 
-    return (
-        <LayoffPresenceContent />
-    );
+    return <LayoffPresenceContent />;
 }
 
-
 function LayoffPresenceContent() {
-    const [militaries, setMilitaries] = useState([])
+    const [militaries, setMilitaries] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
-
+    const [militariesLayoff, setMilitariesLayoff] = useState([]);
 
     useEffect(() => {
-        fetchMilitariesNotInLayoff()
-    }, [])
+        const subunit_id = localStorage.getItem('user_subunit');
 
+        // Primeiro busca os militares em Layoff, depois filtra os demais
+        const fetchData = async () => {
+            try {
+                const { data: inLayoff } = await axios.post(`${server_ip}/api/layoff/presence`, { subunit_id });
+                setMilitariesLayoff(inLayoff);
 
-    const fetchMilitariesNotInLayoff = async () => {
-        await axios.post(`${server_ip}/api/layoff/militaries`, {
-            subunit_id:
-                localStorage.getItem('user_subunit')
-        }).then(({ data }) => {
-            setMilitaries(data);
-        })
-    }
+                const { data: notInLayoff } = await axios.post(`${server_ip}/api/layoff/militaries`, { subunit_id });
 
+                const layoffIds = new Set(inLayoff.map(m => m.id));
+                const filtered = notInLayoff.filter(m => !layoffIds.has(m.id));
+                setMilitaries(filtered);
 
-    const filteredMilitaries = militaries.filter(military => 
+            } catch (error) {
+                console.error("Erro ao buscar militares:", error);
+            }
+        };
+
+        fetchData();
+    }, []);
+
+    const filteredMilitaries = militaries.filter(military =>
         military.name.toLowerCase().includes(searchTerm.toLowerCase())
     );
-
 
     return (
         <Container fluid className='d-grid gap-1 mb-3'>
@@ -59,7 +62,7 @@ function LayoffPresenceContent() {
                 <Card className='card card-header-military font-x-large'>
                     <Card.Body className='text-center'>
                         <Row>
-                            <Col md={6} lg={6} sm={6} xs={6} className="">
+                            <Col md={6}>
                                 <Form>
                                     <Form.Control
                                         type="text"
@@ -70,12 +73,13 @@ function LayoffPresenceContent() {
                                 </Form>
                             </Col>
 
-                            <Col md={4} lg={4} sm={2} xs={2}></Col>
-                        
-                            <Col md={2} lg={2} sm={4} xs={4}>
-                                <Link className='btn btn-success layoff-btn' to={"/layoff/list"}><h6>Militares de Férias/Dispensa</h6></Link>
-                            </Col>
+                            <Col md={4}></Col>
 
+                            <Col md={2}>
+                                <Link className='btn btn-success layoff-btn' to={"/layoff/list"}>
+                                    <h6>Militares de Férias/Dispensa</h6>
+                                </Link>
+                            </Col>
                         </Row>
                     </Card.Body>
                 </Card>
@@ -83,26 +87,26 @@ function LayoffPresenceContent() {
 
             <Container fluid>
                 <Row>
-                    <Col md={6} lg={6} sm={6} xs={6}>
+                    <Col md={6}>
                         <Card className='card-header-military card'>
                             <Card.Body>
                                 <Container fluid>
                                     <Row>
-                                        <Col xs={8} md={8}>Militar</Col>
-                                        <Col xs={4} md={4} className='text-center'>Ações</Col>
+                                        <Col xs={8}>Militar</Col>
+                                        <Col xs={4} className='text-center'>Ações</Col>
                                     </Row>
                                 </Container>
                             </Card.Body>
                         </Card>
                     </Col>
 
-                    <Col md={6} lg={6} sm={6} xs={6}>
+                    <Col md={6}>
                         <Card className='card-header-military card'>
                             <Card.Body>
                                 <Container fluid>
                                     <Row>
-                                        <Col xs={8} md={8}>Militar</Col>
-                                        <Col xs={4} md={4} className='text-center'>Ações</Col>
+                                        <Col xs={8}>Militar</Col>
+                                        <Col xs={4} className='text-center'>Ações</Col>
                                     </Row>
                                 </Container>
                             </Card.Body>
@@ -110,17 +114,13 @@ function LayoffPresenceContent() {
                     </Col>
                 </Row>
 
-                {/* show total military list in frontend. */}
+                {/* Mostrar militares disponíveis */}
                 <Row>
-                    {
-                        filteredMilitaries.length > 0 && (
-                            filteredMilitaries.map((row, key) => (
-                                <RowLayoffMade key={key} name={row.military} id={row.id}></RowLayoffMade>
-                            ))
-                        )
-                    }
+                    {filteredMilitaries.map((row, key) => (
+                        <RowLayoffMade key={key} name={row.military} id={row.id} />
+                    ))}
                 </Row>
             </Container>
         </Container>
-    )
+    );
 }
