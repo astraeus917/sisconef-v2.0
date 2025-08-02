@@ -50,6 +50,7 @@ cp frontend/src/assets/logo.png backend/storage/logo.png
 
 ## 💻 Desenvolvedores
 [#astraeus917](https://github.com/astraeus917)
+
 [#jhonathandelgado16](https://github.com/jhonathandelgado16)
 
 ---
