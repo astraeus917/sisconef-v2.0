@@ -39,3 +39,9 @@ backend-laravel/.phpunit.result.cache
 .vscode/
 Thumbs.db
 .DS_Store
+
+# Database:
+db/
+
+
+
