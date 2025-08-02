@@ -11,7 +11,7 @@ O sistema permite gerenciar destinos, férias, funções e outras informações 
 - **Axios, SweetAlert2, Bootstrap** (Bibliotecas auxiliares)
 - **Moment.js, jsPDF** (Manipulação de datas e geração de PDFs)
 
-## Instalação
+## ⚙️ Instalação
 
 ### 1. Instalar Laravel
 ```sh
@@ -48,6 +48,11 @@ cp frontend/src/assets/logo.png backend/storage/logo.png
 
 ---
 
-## Contato
+## 📄 Licença
+Este projeto está sob a licença CC-BY-NC-SA-4.0 – veja o arquivo [CC-BY-NC-SA-4.0](CC-BY-NC-SA-4.0) para mais detalhes.
+
+---
+
+## 📞 Contato
 Para mais informações ou suporte, entre em contato com os desenvolvedores do projeto.
 
