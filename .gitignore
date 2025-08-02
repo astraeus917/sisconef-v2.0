@@ -41,7 +41,7 @@ Thumbs.db
 .DS_Store
 
 # Database:
-db/
+/db/
 
 
 
