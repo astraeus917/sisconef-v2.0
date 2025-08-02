@@ -48,6 +48,12 @@ cp frontend/src/assets/logo.png backend/storage/logo.png
 
 ---
 
+## 💻 Desenvolvedores
+[#astraeus917](https://github.com/astraeus917)
+[#jhonathandelgado16](https://github.com/jhonathandelgado16)
+
+---
+
 ## 📄 Licença
 Este projeto está sob a licença CC-BY-NC-SA-4.0 – veja o arquivo [CC-BY-NC-SA-4.0](CC-BY-NC-SA-4.0) para mais detalhes.
 
