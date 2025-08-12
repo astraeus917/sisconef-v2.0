@@ -27,7 +27,6 @@ backend-laravel/public/hot
 backend-laravel/public/vendor
 backend-laravel/public/mix-manifest.json
 backend-laravel/.env
-backend-laravel/.env.example
 backend-laravel/.phpunit.result.cache
 
 # IDEs & OS Files
