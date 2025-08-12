@@ -29,8 +29,6 @@ import EditLayoff from "./components/layoff/edit.component";
 
 
 // Admin components.
-import AdminPanel from "./components/user/admin.component";
-import UserEdit from "./components/user/edit.component";
 import CreateDestiny from "./components/destiny/create.component";
 
 
@@ -62,8 +60,6 @@ return (
                 <Route path="/layoff/edit/:id" element={<EditLayoff />} />
 
                 {/* Admin routes */}
-                <Route path="/admin" element={<AdminPanel />} />
-                <Route path="/user/edit/:id" element={<UserEdit />} />
                 <Route path="/destiny/create" element={<CreateDestiny />} />
             </Routes>
             </Col>

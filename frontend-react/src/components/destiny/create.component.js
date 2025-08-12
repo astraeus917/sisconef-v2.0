@@ -1,3 +1,4 @@
+import server_ip from '../config';
 import React, { useState, useEffect } from "react";
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
@@ -33,7 +34,7 @@ function CreateDestinyContent({ navigate }) {
     const formData = new FormData()
     formData.append('destination', destination.toUpperCase());
 
-    await axios.post(`http://localhost:8000/api/destinations`, formData).then(({ data }) => {
+    await axios.post(`${server_ip}/api/destinations`, formData).then(({ data }) => {
       Swal.fire({
         icon: "success",
         text: data.message,

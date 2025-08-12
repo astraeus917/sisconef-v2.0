@@ -24,11 +24,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-// Admin routes.
-Route::get('/users', [UserController::class, 'index']);
-Route::post('/user/edit/{id}', [UserController::class, 'edit']);
-
-
 // Login and register routes.
 Route::post('users/login', [UserController::class, 'login'])->name('users.login');
 Route::post('users/register', [UserController::class, 'store'])->name('users.store');

@@ -62,100 +62,109 @@ function UserEditContent({ navigate }) {
       setUsername(username)
       setRole(role)
       setSubunit(subunit_id)
-    }).catch(({ response: { data } }) => {
-      Swal.fire({
-        text: data.message,
-        icon: "error",
-        confirmButtonColor: '#198754',
-      })
-    })
-  }
-
-  const updateUser = async (e) => {
-    e.preventDefault();
-    const formData = new FormData()
-
-    formData.append('username', username)
-    formData.append('role_id', role)
-    formData.append('subunit_id', subunit)
-
-    await axios.post(`${server_ip}/api/user/edit/${id}`, formData).then(({ data }) => {
-      Swal.fire({
-        icon: "success",
-        text: data.message,
-        confirmButtonColor: '#198754',
-      })
-      navigate("/militaries/list")
-    }).catch(({ response }) => {
-      if (response.status === 422) {
-        setValidationError(response.data.errors)
+      console.log(data);
+    }).catch((error) => {
+      if (error.response) {
+        Swal.fire({
+          text: error.response.data?.message || "Erro desconhecido no servidor.",
+          icon: "error",
+          confirmButtonColor: '#198754',
+        })
       } else {
         Swal.fire({
-          text: response.data.message,
+          text: "Não foi possível conectar ao servidor.",
           icon: "error",
           confirmButtonColor: '#198754',
         })
       }
+  })
+}
+
+const updateUser = async (e) => {
+  e.preventDefault();
+  const formData = new FormData()
+
+  formData.append('username', username)
+  formData.append('role_id', role)
+  formData.append('subunit_id', subunit)
+
+  await axios.post(`${server_ip}/api/user/edit/${id}`, formData).then(({ data }) => {
+    Swal.fire({
+      icon: "success",
+      text: data.message,
+      confirmButtonColor: '#198754',
     })
-  }
+    navigate("/militaries/list")
+  }).catch(({ response }) => {
+    if (response.status === 422) {
+      setValidationError(response.data.errors)
+    } else {
+      Swal.fire({
+        text: response.data.message,
+        icon: "error",
+        confirmButtonColor: '#198754',
+      })
+    }
+  })
+}
 
-  return (
-    <div className="container">
-      <div className="row justify-content-center">
-        <div className="col-12 col-sm-12 col-md-6">
-          <div className="card">
-            <div className="card-body">
+return (
+  <div className="container">
+    <div className="row justify-content-center">
+      <div className="col-12 col-sm-12 col-md-6">
+        <div className="card">
+          <div className="card-body">
 
-              <Link to={`/admin`}>
-                voltar
-              </Link>
+            <Link to={`/admin`}>
+              voltar
+            </Link>
 
-              <h4 className="card-warName mt-2">Editar Usuário</h4>
-              <hr />
-              <div className="form-wrapper">
-                <Form onSubmit={updateUser}>
-                  <Row>
+            <h4 className="card-warName mt-2">Editar Usuário</h4>
+            <hr />
+            <div className="form-wrapper">
+              <Form onSubmit={updateUser}>
+                <Row>
 
-                    <Col xs={12} className="mb-3">
-                      <Form.Group controlId="Name">
-                        <Form.Label>Nome de Guerra</Form.Label>
-                        <Form.Control required type="text" value={username} onChange={(event) => {
-                          setUsername(event.target.value);
-                        }} />
-                      </Form.Group>
-                    </Col>
+                  <Col xs={12} className="mb-3">
+                    <Form.Group controlId="Name">
+                      <Form.Label>Nome de Guerra</Form.Label>
+                      <Form.Control required type="text" value={username} onChange={(event) => {
+                        setUsername(event.target.value);
+                      }} />
+                    </Form.Group>
+                  </Col>
 
-                    <Col xs={6} className="mb-3">
-                      <Form.Group controlId="Subunit">
-                        <Form.Label>Subunidade</Form.Label>
-                        <Form.Select required value={subunit} onChange={(event) => {
-                          setSubunit(event.target.value)
-                        }}>
-                          {subunitOptions.map((option) => {
-                            return (
-                              <option key={option.value} value={option.value}>
-                                {option.key}
-                              </option>
-                            );
-                          })}
-                        </Form.Select>
-                      </Form.Group>
-                    </Col>
-                  </Row>
+                  <Col xs={6} className="mb-3">
+                    <Form.Group controlId="Subunit">
+                      <Form.Label>Subunidade</Form.Label>
+                      <Form.Select required value={subunit} onChange={(event) => {
+                        setSubunit(event.target.value)
+                      }}>
+                        {subunitOptions.map((option) => {
+                          return (
+                            <option key={option.value} value={option.value}>
+                              {option.key}
+                            </option>
+                          );
+                        })}
+                      </Form.Select>
+                    </Form.Group>
+                  </Col>
+                </Row>
 
-                  <Row className="justify-content-center">
-                    <Button variant="success" className="mt-3 text-center col-4" type="submit">
-                      Salvar
-                    </Button>
-                  </Row>
+                <Row className="justify-content-center">
+                  <Button variant="success" className="mt-3 text-center col-4" type="submit">
+                    Salvar
+                  </Button>
+                </Row>
 
-                </Form>
-              </div>
+              </Form>
             </div>
           </div>
         </div>
       </div>
     </div>
-  )
+  </div>
+)
 }
 

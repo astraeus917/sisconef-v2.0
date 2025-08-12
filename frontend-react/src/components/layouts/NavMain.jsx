@@ -36,7 +36,6 @@ function NavMain() {
 
                                     {userRole === "Admin" && (
                                         <Nav>
-                                            <Nav.Link className="nav-link" href="/admin">Admin</Nav.Link>
                                             <Nav.Link className="nav-link" href="/militaries/list">Militares</Nav.Link>
                                             <Nav.Link href="/militaries/presence">Mapa da Força</Nav.Link>
                                             <Nav.Link href="/layoff/list">Férias e Dispensas</Nav.Link>
